@@ -2,10 +2,32 @@
 import React, { useState } from 'react';
 import { EXPERT, GALLERY_BEFORE_AFTER, GALLERY_SMILES } from '../constants';
 
+const GalleryImage: React.FC<{ src: string; alt: string; onClick: () => void; isPriority?: boolean }> = ({ src, alt, onClick, isPriority }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  if (error) return null; // Opcional: retornar um placeholder de erro
+
+  return (
+    <div 
+      className={`aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group bg-gray-900 transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      onClick={onClick}
+    >
+      <img 
+        src={src} 
+        alt={alt} 
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+        onLoad={() => setLoaded(true)}
+        onError={() => setError(true)}
+        loading={isPriority ? "eager" : "lazy"}
+      />
+    </div>
+  );
+};
+
 const LandingPage: React.FC = () => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
-  // Consistent primary button class for high-conversion gold CTAs
   const primaryButtonClass = "inline-block w-full text-center py-5 md:py-6 rounded-full gold-gradient text-black font-bold uppercase tracking-widest text-sm shadow-2xl shadow-gold-900/40 hover:scale-[1.05] active:scale-95 transition-all duration-300";
 
   return (
@@ -13,7 +35,6 @@ const LandingPage: React.FC = () => {
       
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-end p-6 pb-20 md:pb-32 md:px-12 overflow-hidden">
-        {/* Hero Background Image */}
         <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
           <img 
             src={EXPERT.heroBackground} 
@@ -21,7 +42,6 @@ const LandingPage: React.FC = () => {
             className="w-full h-full object-cover object-top md:object-[center_15%] opacity-100 transition-opacity duration-1000"
             fetchPriority="high"
           />
-          {/* Gradients for maximum legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
           <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/80 via-transparent to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-transparent"></div>
@@ -97,13 +117,13 @@ const LandingPage: React.FC = () => {
 
            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
               {GALLERY_BEFORE_AFTER.map((img, i) => (
-                <div 
+                <GalleryImage 
                   key={i} 
-                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group bg-gray-900"
-                  onClick={() => setSelectedImg(img)}
-                >
-                   <img src={img} alt={`Resultado Transformação ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                </div>
+                  src={img} 
+                  alt={`Resultado Transformação ${i}`} 
+                  onClick={() => setSelectedImg(img)} 
+                  isPriority={i < 4}
+                />
               ))}
            </div>
         </div>
@@ -119,13 +139,13 @@ const LandingPage: React.FC = () => {
            
            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
               {GALLERY_SMILES.map((img, i) => (
-                <div 
+                <GalleryImage 
                   key={i} 
-                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group bg-gray-900"
-                  onClick={() => setSelectedImg(img)}
-                >
-                   <img src={img} alt={`Sorriso Transformado ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                </div>
+                  src={img} 
+                  alt={`Sorriso Transformado ${i}`} 
+                  onClick={() => setSelectedImg(img)} 
+                  isPriority={i < 7}
+                />
               ))}
            </div>
 
@@ -205,7 +225,6 @@ const LandingPage: React.FC = () => {
 
       {/* 8. CTA FINAL */}
       <section className="py-32 px-6 md:px-12 text-center relative overflow-hidden">
-         {/* Background Decor */}
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 md:w-[600px] h-96 md:h-[600px] bg-gold-gradient opacity-10 blur-[100px] rounded-full pointer-events-none"></div>
 
          <div className="max-w-3xl mx-auto space-y-10 relative z-10">
