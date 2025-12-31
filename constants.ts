@@ -5,7 +5,7 @@ export const EXPERT = {
   address: "Av. Maranhão - St. Uniao I, Gurupi - TO, 77405-180",
   whatsapp: "https://api.whatsapp.com/message/BRFNXTFYMIQ5E1?autoload=1&app_absent=0",
   instagram: "https://www.instagram.com/kalissateles/",
-  heroImage: "https://i.imgur.com/yKPocdQ.png",
+  heroImage: "https://i.imgur.com/YA2Ugqz.png",
   heroBackground: "https://i.imgur.com/e7zkrAo.png",
   bioImage: "https://i.imgur.com/YA2Ugqz.png",
   extraImage: "https://i.imgur.com/e7zkrAo.png"
