@@ -14,11 +14,12 @@ const LandingPage: React.FC = () => {
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-end p-6 pb-20 md:pb-32 md:px-12 overflow-hidden">
         {/* Hero Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
           <img 
             src={EXPERT.heroBackground} 
             alt={EXPERT.name} 
             className="w-full h-full object-cover object-top md:object-[center_15%] opacity-100 transition-opacity duration-1000"
+            fetchPriority="high"
           />
           {/* Gradients for maximum legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
@@ -56,7 +57,7 @@ const LandingPage: React.FC = () => {
       <section className="py-24 px-6 md:px-12 bg-[#0d0d0d] relative overflow-hidden">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-center">
            <div className="relative w-full md:w-1/2">
-              <img src={EXPERT.bioImage} alt="Dra. Kalissa Teles" className="w-full rounded-3xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700 shadow-2xl border border-white/5" />
+              <img src={EXPERT.bioImage} alt="Dra. Kalissa Teles" className="w-full rounded-3xl grayscale-[0.2] hover:grayscale-0 transition-all duration-700 shadow-2xl border border-white/5 bg-gray-900" />
               <div className="absolute -bottom-6 -right-4 glass p-4 rounded-2xl border border-white/10">
                  <p className="font-signature text-2xl md:text-3xl gold-text">K. Teles</p>
               </div>
@@ -98,10 +99,10 @@ const LandingPage: React.FC = () => {
               {GALLERY_BEFORE_AFTER.map((img, i) => (
                 <div 
                   key={i} 
-                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group"
+                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group bg-gray-900"
                   onClick={() => setSelectedImg(img)}
                 >
-                   <img src={img} alt={`Resultado Transformação ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                   <img src={img} alt={`Resultado Transformação ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                 </div>
               ))}
            </div>
@@ -120,10 +121,10 @@ const LandingPage: React.FC = () => {
               {GALLERY_SMILES.map((img, i) => (
                 <div 
                   key={i} 
-                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group"
+                  className="aspect-square rounded-2xl overflow-hidden glass border border-white/5 cursor-pointer group bg-gray-900"
                   onClick={() => setSelectedImg(img)}
                 >
-                   <img src={img} alt={`Sorriso Transformado ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                   <img src={img} alt={`Sorriso Transformado ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                 </div>
               ))}
            </div>

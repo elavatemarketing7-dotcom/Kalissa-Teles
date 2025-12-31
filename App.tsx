@@ -38,8 +38,13 @@ const App: React.FC = () => {
               <p className="text-sm tracking-widest font-light text-gray-400 uppercase">{EXPERT.profession}</p>
             </div>
             
-            <div className="relative w-48 h-48 mx-auto rounded-full p-1 border border-gold-gradient overflow-hidden shadow-2xl shadow-yellow-900/20">
-               <img src={EXPERT.heroImage} alt={EXPERT.name} className="w-full h-full object-cover rounded-full" />
+            <div className="relative w-48 h-48 mx-auto rounded-full p-1 border border-gold-gradient overflow-hidden shadow-2xl shadow-yellow-900/20 bg-gray-900">
+               <img 
+                 src={EXPERT.heroImage} 
+                 alt={EXPERT.name} 
+                 className="w-full h-full object-cover rounded-full"
+                 fetchPriority="high"
+               />
             </div>
 
             <p className="text-gray-300 italic font-serif text-lg">

@@ -33,8 +33,13 @@ const Quiz: React.FC<QuizProps> = ({ onComplete, onCancel }) => {
         {/* Floating Hero Info Header */}
         <div className="w-full flex justify-between items-center mb-8 animate-fade-in">
            <div className="flex items-center gap-3">
-              <div className="relative w-14 h-14 rounded-full border-2 border-gold-gradient overflow-hidden shadow-lg shadow-gold-500/10 flex-shrink-0">
-                 <img src={EXPERT.heroImage} alt={EXPERT.name} className="w-full h-full object-cover" />
+              <div className="relative w-14 h-14 rounded-full border-2 border-gold-gradient overflow-hidden shadow-lg shadow-gold-500/10 flex-shrink-0 bg-gray-100">
+                 <img 
+                   src={EXPERT.heroImage} 
+                   alt={EXPERT.name} 
+                   className="w-full h-full object-cover" 
+                   fetchPriority="high"
+                 />
               </div>
               <div className="overflow-hidden">
                  <h3 className="text-xs font-bold text-gray-900 uppercase tracking-widest whitespace-nowrap">{EXPERT.name}</h3>
